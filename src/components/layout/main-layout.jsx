@@ -73,7 +73,7 @@ export const MainLayout = ({children}) => {
   };
 
   return (
-    <Box>
+    <Box className="main-layout">
       <TopBar onMenuClick={() => toggleMainMenuDrawer(true)} onProfileClick={() => toggleProfileMenuDrawer(true)} />
 
       <Drawer open={mainMenuOpen} onClose={() => toggleMainMenuDrawer(false)} sx={drawerStyleSettings}>
@@ -84,7 +84,7 @@ export const MainLayout = ({children}) => {
         <SideMenu onClick={toggleProfileMenuDrawer} items={profileMenu} title={'Profile'} subtitle={`Hello ${currentUserName}!`}></SideMenu>
       </Drawer>
 
-      <Box>{children}</Box>
+      {children}
     </Box>
   );
 };

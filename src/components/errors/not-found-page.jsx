@@ -1,15 +1,16 @@
-import { useNavigate } from 'react-router-dom';
+import {Box, Typography} from '@mui/material';
+import {useNavigate} from 'react-router-dom';
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();
-  
+
   return (
     <Box>
       <Box>
-        <Typography component='div' variant='h6'>
+        <Typography component="div" variant="h6">
           Error
         </Typography>
-        <Typography variant='subtitle1' color='text.secondary'>
+        <Typography variant="subtitle1" color="text.secondary">
           Coisou as coisas
         </Typography>
       </Box>

@@ -1,25 +1,23 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import {createBrowserRouter, Navigate} from 'react-router-dom';
 
-import { ProtectedRoute } from './protected-route';
-import { MainLayout } from '../components/layout/main-layout';
-import { AppRoot } from './app-root';
-import { NotFoundPage, ErrorPage } from '../components/errors';
+import {ProtectedRoute} from './protected-route';
+import {MainLayout} from '../components/layout/main-layout';
+import {AppRoot} from './app-root';
+import {NotFoundPage, ErrorPage} from '../components/errors';
 
-import { LoginPage } from '@/domains/auth/pages';
-import { DashboardPage } from '@/domains/dashboard/pages';
-import { ProfilePage } from '@/domains/profile/pages';
-
-
+import {LoginPage} from '@/domains/auth/pages';
+import {DashboardPage, DashboardTabHome, DashboardTabTest} from '@/domains/dashboard/pages';
+import {ProfilePage} from '@/domains/profile/pages';
 
 export const routes = [
   {
     path: '/',
-    element: <Navigate to='/app' replace />
+    element: <Navigate to="/app" replace />,
   },
   {
     path: '/auth/login',
     element: <LoginPage />,
-    errorElement: <ErrorPage message='Error loading login page' />
+    errorElement: <ErrorPage message="Error loading login page" />,
   },
   {
     path: '/app',
@@ -30,20 +28,30 @@ export const routes = [
     ),
     errorElement: (
       <MainLayout>
-        <ErrorPage message='Error loading the app' />
+        <ErrorPage message="Error loading the app" />
       </MainLayout>
     ),
     children: [
-      { index: true, element: <DashboardPage /> },
-      { path: 'profile/:id', element: <ProfilePage /> },
-      { path: '*', element: <NotFoundPage /> }
-    ]
+      //{index: true, element: <DashboardPage />, children: [{index: true, element: <DashboardHomePage />}]},
+
+      {index: true, element: <Navigate to="dashboard" replace />},
+      {
+        path: 'dashboard',
+        element: <DashboardPage />,
+        children: [
+          {index: true, element: <DashboardTabHome />},
+          {path: 'test/:id?', element: <DashboardTabTest />},
+        ],
+      },
+      {path: 'profile/:id', element: <ProfilePage />},
+      {path: '*', element: <NotFoundPage />},
+    ],
   },
   {
     path: '*',
     element: <NotFoundPage />,
-    errorElement: <ErrorPage />
-  }
+    errorElement: <ErrorPage />,
+  },
 ];
 
 export const router = createBrowserRouter(routes);

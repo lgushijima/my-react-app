@@ -13,7 +13,7 @@ export const TopBar = ({onProfileClick, onMenuClick}) => {
   const currentUserName = useSelector(getUserName);
 
   return (
-    <AppBar position="fixed" sx={{paddingRight: '1rem', paddingLeft: '1rem'}}>
+    <AppBar position="static" sx={{paddingRight: '1rem', paddingLeft: '1rem'}}>
       <Toolbar disableGutters>
         <Box sx={{display: {xs: 'flex'}}}>
           <IconButton size="large" color="primary" aria-label="menu" sx={{mr: 2}} onClick={onMenuClick}>
