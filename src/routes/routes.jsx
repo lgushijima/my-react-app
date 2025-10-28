@@ -6,7 +6,7 @@ import {AppRoot} from './app-root';
 import {NotFoundPage, ErrorPage} from '../components/errors';
 
 import {LoginPage} from '@/domains/auth/pages';
-import {DashboardPage, DashboardTabHome, DashboardTabTest} from '@/domains/dashboard/pages';
+import {DashboardPage, DashboardTabHome, DashboardTabTest} from '@/domains/dashboard/index';
 import {ProfilePage} from '@/domains/profile/pages';
 
 export const routes = [
