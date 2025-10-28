@@ -6,26 +6,17 @@ export const PageTabs = ({fixedTabs}) => {
   const {tabs} = useTabs();
 
   return (
-    <Box
-      sx={{
-        background: 'rgba(0,0,0,0.1)',
-        padding: '1rem',
-        paddingBottom: 0,
-        borderTopLeftRadius: '1rem',
-        borderTopRightRadius: '1rem',
-      }}>
+    <Box className="page-tabs">
       {(fixedTabs ?? []).map((tab, idx) => (
-        <span key={tab.id}>
-          {idx == 0 ? '' : ' | '}
+        <Box key={tab.id}>
           <NavLink to={tab.link}>{tab.title}</NavLink>
-        </span>
+        </Box>
       ))}
 
       {tabs.map(tab => (
-        <span key={tab.id}>
-          {' | '}
+        <Box key={tab.id}>
           <NavLink to={tab.link}>{tab.title}</NavLink>
-        </span>
+        </Box>
       ))}
     </Box>
   );

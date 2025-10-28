@@ -23,56 +23,6 @@ const muzitTheme = createTheme({
       paper: colors.background.paper,
     },
   },
-  components: {
-    MuiLisItem: {
-      styleOverrides: {
-        root: {
-          '&:hover': {
-            backgroundColor: colors.background.hover,
-          },
-        },
-      },
-    },
-    MuiListItemButton: {
-      styleOverrides: {
-        root: {
-          borderLeft: '3px solid transparent',
-          backgroundColor: 'transparent',
-          transition: 'all .5s ease',
-          i: {
-            transition: 'all .5s ease',
-          },
-          '&:hover': {
-            backgroundColor: colors.background.primary,
-            color: colors.text.highlight,
-            borderLeftColor: colors.primary,
-            i: {
-              color: colors.primary,
-            },
-          },
-        },
-      },
-    },
-    MuiListItemIcon: {
-      styleOverrides: {
-        root: {
-          color: colors.text.primary,
-        },
-      },
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: colors.background.secondary,
-        },
-      },
-    },
-  },
-  custom: {
-    background: {
-      gradient: colors.background.gradient,
-    },
-  },
 });
 
 export default muzitTheme;

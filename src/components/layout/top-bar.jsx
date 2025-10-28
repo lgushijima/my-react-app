@@ -8,14 +8,15 @@ import Tooltip from '@mui/material/Tooltip';
 
 import {getUserName} from '@/domains/auth/reducer/slice';
 import {useSelector} from 'react-redux';
+import {Badge, Button} from '@mui/material';
 
 export const TopBar = ({onProfileClick, onMenuClick}) => {
   const currentUserName = useSelector(getUserName);
 
   return (
-    <AppBar position="static" sx={{paddingRight: '1rem', paddingLeft: '1rem'}}>
+    <AppBar position="static">
       <Toolbar disableGutters>
-        <Box sx={{display: {xs: 'flex'}}}>
+        <Box>
           <IconButton size="large" color="primary" aria-label="menu" sx={{mr: 2}} onClick={onMenuClick}>
             <i className="fal fa-bars"></i>
           </IconButton>
@@ -37,9 +38,21 @@ export const TopBar = ({onProfileClick, onMenuClick}) => {
           Ushijima
         </Typography>
 
-        <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}></Box>
-
         <Box sx={{flexGrow: 0}}>
+          <IconButton onClick={onProfileClick} sx={{mr: 1}} size="medium" color="secondary">
+            <i className="fal fa-trophy"></i>
+            <Badge badgeContent={3} color="primary" overlap="circular" sx={{top: '-12px', right: 0}} />
+          </IconButton>
+
+          <IconButton onClick={onProfileClick} sx={{mr: 1}} size="medium" color="secondary">
+            <i className="fal fa-envelope"></i>
+            <Badge badgeContent={2} color="primary" overlap="circular" sx={{top: '-12px', right: 0}} />
+          </IconButton>
+
+          <IconButton onClick={onProfileClick} sx={{mr: 2}} size="medium" color="secondary">
+            <i className="fal fa-search"></i>
+          </IconButton>
+
           <Tooltip title={currentUserName}>
             <IconButton onClick={onProfileClick} sx={{p: 0}}>
               <Avatar alt={currentUserName} src="/static/images/avatar/2.jpg" />

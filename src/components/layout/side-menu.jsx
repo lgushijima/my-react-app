@@ -4,28 +4,9 @@ export const SideMenu = ({onClick, items, title, subtitle}) => {
   const theme = useTheme();
 
   return (
-    <Box
-      className="sideMenu"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: 300,
-        height: '100%',
-        backgroundColor: 'background.secondary',
-      }}>
-      <Box
-        sx={{
-          flex: '1',
-          width: 300,
-          backgroundImage: theme.custom.background.gradient,
-        }}
-        role="presentation"
-        onClick={() => onClick(false)}>
-        <Box
-          sx={{
-            backgroundColor: 'background.primary',
-            padding: '1rem',
-          }}>
+    <Box className="side-menu">
+      <Box role="presentation" onClick={() => onClick(false)}>
+        <Box>
           <Typography variant="h5" component="h2">
             {title || 'Main Menu'}
           </Typography>

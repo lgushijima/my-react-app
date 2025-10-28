@@ -1,0 +1,39 @@
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  flex: 1;
+  background-color: var(--color-bg-secondary);
+
+  > div {
+    > div {
+      background-color: var(--color-bg-primary);
+      padding: 1rem;
+
+      h2,
+      span {
+        color: var(--color-text-primary);
+      }
+    }
+
+    ul {
+      li {
+        border-left: 5px solid transparent;
+        @extend .transition-all;
+        &:hover {
+          border-left-color: var(--color-primary);
+          background-color: var(--color-bg-hover);
+          i {
+            color: var(--color-primary);
+            transform: scale(1.15) rotate(10deg);
+          }
+        }
+        span,
+        i {
+          @extend .transition-all;
+          color: var(--color-text-primary);
+        }
+      }
+    }
+  }
+}

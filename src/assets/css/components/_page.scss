@@ -1,0 +1,55 @@
+.page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-secondary);
+  border-radius: 1rem;
+  padding: 0rem;
+  margin: 1rem;
+
+  .page-tabs {
+    display: flex;
+    flex-direction: row;
+    background: var(--color-bg-primary) url('@/assets/img/shadow.png');
+    padding: 0.5rem 1rem;
+    padding-bottom: 0;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    > div {
+      max-width: 250px;
+      text-overflow: ellipsis;
+      user-select: none;
+      font-size: 14px;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 0.5rem 1rem 0.3rem;
+      text-decoration: none;
+      background: var(--color-bg-secondary);
+
+      margin-right: 0.5rem;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      a {
+        color: var(--color-text-primary);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .page-content {
+    flex: 1;
+    display: flex;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(
+        45deg,
+        color-mix(in srgb, var(--color-bg-primary) 70%, transparent),
+        color-mix(in srgb, var(--color-bg-secondary) 90%, transparent)
+      ),
+      url('https://images3.alphacoders.com/589/58905.jpg') center center / cover;
+  }
+}

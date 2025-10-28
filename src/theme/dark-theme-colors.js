@@ -1,6 +1,6 @@
 export const colors = {
   primary: '#ff5a5f',
-  secondary: '#219dd6ff',
+  secondary: '#ced4da',
   background: {
     default: '#f5f5f5',
     paper: '#ffffff',
@@ -18,4 +18,4 @@ export const colors = {
   gradient: {
     main: 'linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0.7) 100%)',
   },
-}
+};
