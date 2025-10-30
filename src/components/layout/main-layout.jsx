@@ -8,7 +8,7 @@ import {resetPagesState} from '@/routes/reducer/pages-slice';
 import {SideMenu} from './side-menu';
 import {TopBar} from './top-bar';
 
-import {profileMenuConfig} from '@/routes/menus/profile-menu';
+import {mainMenuConfig, profileMenuConfig} from '@/routes/menus';
 
 export const MainLayout = ({children}) => {
   const dispatch = useDispatch();
@@ -25,25 +25,6 @@ export const MainLayout = ({children}) => {
     setProfileMenuOpen(newOpen);
   };
 
-  const mainMenu = [
-    {
-      text: 'Dashboard',
-      icon: 'fal fa-home',
-    },
-    {
-      text: 'Heatmap',
-      icon: 'fal fa-map-marker-alt',
-    },
-    {
-      text: 'Trends',
-      icon: 'fal fa-analytics',
-    },
-    {
-      text: 'Campaign',
-      icon: 'fal fa-bullseye-pointer',
-    },
-  ];
-
   const handlers = {
     navigate: link => {
       navigate(link);
@@ -57,6 +38,7 @@ export const MainLayout = ({children}) => {
     },
   };
 
+  const mainMenu = mainMenuConfig(handlers);
   const profileMenu = profileMenuConfig(handlers);
 
   const drawerStyleSettings = {
