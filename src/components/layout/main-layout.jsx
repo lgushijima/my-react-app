@@ -9,6 +9,7 @@ import {SideMenu} from './side-menu';
 import {TopBar} from './top-bar';
 
 import {mainMenuConfig, profileMenuConfig} from '@/routes/menus';
+import {LoadingOverlay} from '../common/LoadingOverlay';
 
 export const MainLayout = ({children}) => {
   const dispatch = useDispatch();
@@ -50,6 +51,8 @@ export const MainLayout = ({children}) => {
 
   return (
     <Box className="main-layout">
+      {/* <LoadingOverlay></LoadingOverlay> */}
+
       <TopBar onMenuClick={() => toggleMainMenuDrawer(true)} onProfileClick={() => toggleProfileMenuDrawer(true)} />
 
       <Drawer open={mainMenuOpen} onClose={() => toggleMainMenuDrawer(false)} sx={drawerStyleSettings}>
