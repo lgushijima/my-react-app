@@ -1,12 +1,18 @@
 import {Box, Drawer} from '@mui/material';
 import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {resetUser, getUserName} from '@/domains/auth/reducer/slice';
+import {resetPagesState} from '@/routes/reducer/pages-slice';
+
 import {SideMenu} from './side-menu';
 import {TopBar} from './top-bar';
 
-import {getUserName} from '@/domains/auth/reducer/slice';
-import {useSelector} from 'react-redux';
+import {profileMenuConfig} from '@/routes/menus/profile-menu';
 
 export const MainLayout = ({children}) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [mainMenuOpen, setMainMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
@@ -38,32 +44,20 @@ export const MainLayout = ({children}) => {
     },
   ];
 
-  const profileMenu = [
-    {
-      text: 'Edit profile',
-      icon: 'fal fa-pencil-alt',
+  const handlers = {
+    navigate: link => {
+      navigate(link);
     },
-    {
-      text: 'Achievements',
-      icon: 'fal fa-medal',
+    changePassword: () => {
+      console.log('change password');
     },
-    {
-      text: 'Preferences',
-      icon: 'fal fa-cog',
+    logout: () => {
+      dispatch(resetUser());
+      dispatch(resetPagesState());
     },
-    {
-      text: 'Tier',
-      icon: 'fal fa-trophy',
-    },
-    {
-      text: 'Change password',
-      icon: 'fal fa-unlock-alt',
-    },
-    {
-      text: 'Logout',
-      icon: 'fal fa-sign-out-alt',
-    },
-  ];
+  };
+
+  const profileMenu = profileMenuConfig(handlers);
 
   const drawerStyleSettings = {
     '& .MuiDrawer-paper': {

@@ -4,14 +4,14 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
 
-import {getUserName} from '@/domains/auth/reducer/slice';
+import {getUserName, getUserAvatar} from '@/domains/auth/reducer/slice';
 import {useSelector} from 'react-redux';
 import {Badge, Button} from '@mui/material';
 
 export const TopBar = ({onProfileClick, onMenuClick}) => {
   const currentUserName = useSelector(getUserName);
+  const currentUserAvatar = useSelector(getUserAvatar);
 
   return (
     <AppBar position="static">
@@ -53,11 +53,9 @@ export const TopBar = ({onProfileClick, onMenuClick}) => {
             <i className="fal fa-search"></i>
           </IconButton>
 
-          <Tooltip title={currentUserName}>
-            <IconButton onClick={onProfileClick} sx={{p: 0}}>
-              <Avatar alt={currentUserName} src="/static/images/avatar/2.jpg" />
-            </IconButton>
-          </Tooltip>
+          <IconButton onClick={onProfileClick} sx={{p: 0}}>
+            <Avatar alt={currentUserName} src={'/img/avatar/avatar-3.png'} />
+          </IconButton>
         </Box>
       </Toolbar>
     </AppBar>

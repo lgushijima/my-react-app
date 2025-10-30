@@ -18,7 +18,10 @@ export const SideMenu = ({onClick, items, title, subtitle}) => {
         <List disablePadding>
           {items.map((item, index) => (
             <ListItem key={item.text} disablePadding>
-              <ListItemButton>
+              <ListItemButton
+                onClick={() => {
+                  if (typeof item.onClick === 'function') item.onClick();
+                }}>
                 <ListItemIcon sx={{minWidth: '35px'}}>
                   <i className={item.icon} />
                 </ListItemIcon>

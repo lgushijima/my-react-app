@@ -1,4 +1,3 @@
-// store/screensSlice.ts
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {};
@@ -25,8 +24,11 @@ const pagesSlice = createSlice({
         delete state[componentName][pageId];
       }
     },
+    resetPagesState: () => {
+      return initialState;
+    },
   },
 });
 
-export const {setPageState, removePageState} = pagesSlice.actions;
+export const {setPageState, removePageState, resetPagesState} = pagesSlice.actions;
 export const pagesReducer = pagesSlice.reducer;

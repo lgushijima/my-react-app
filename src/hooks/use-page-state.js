@@ -1,18 +1,12 @@
-// src/hooks/usePageState.ts
 import {useDispatch, useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom';
 import {setPageState} from '@/routes/reducer/pages-slice';
 import {useCallback, useEffect} from 'react';
 
-export const usePageState = (componentName, initialState = {}) => {
+export const usePageState = (componentName, pageId, initialState = {}) => {
   const dispatch = useDispatch();
-  const {id} = useParams();
-  const pageId = id || 'new';
-
-  const emptyData = {};
 
   //-- get componente state from the store
-  const stateData = useSelector(state => state.pages?.[componentName]?.[pageId]?.data ?? emptyData);
+  const stateData = useSelector(state => state.pages?.[componentName]?.[pageId]?.data ?? initialState);
 
   //-- function to save the current data into the store
   const setStateData = useCallback(
@@ -27,12 +21,6 @@ export const usePageState = (componentName, initialState = {}) => {
     },
     [dispatch, componentName, pageId, stateData],
   );
-
-  useEffect(() => {
-    if (!Object.keys(stateData).length) {
-      setStateData(initialState);
-    }
-  }, [pageId]);
 
   return [stateData, setStateData, pageId];
 };

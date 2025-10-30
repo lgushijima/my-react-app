@@ -16,24 +16,36 @@
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 
-    > div {
-      max-width: 250px;
-      text-overflow: ellipsis;
-      user-select: none;
-      font-size: 14px;
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      padding: 0.5rem 1rem 0.3rem;
-      text-decoration: none;
-      background: var(--color-bg-secondary);
-
+    a {
       margin-right: 0.5rem;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      color: var(--color-text-primary);
+      text-decoration: none;
+      background: color-mix(in srgb, var(--color-bg-secondary) 50%, transparent);
       border-top-left-radius: 0.5rem;
       border-top-right-radius: 0.5rem;
-      a {
-        color: var(--color-text-primary);
-        text-decoration: none;
+      padding: 0 1rem;
+
+      > span {
+        display: inline-block;
+        max-width: 250px;
+        text-overflow: ellipsis;
+        user-select: none;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      &.active {
+        background: var(--color-bg-secondary);
+      }
+      &.closable {
+        padding-right: 0.25rem;
+        span {
+          margin-right: 10px;
+        }
       }
     }
   }

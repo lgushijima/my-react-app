@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   isAuthenticated: false,
-  user: null
+  user: null,
 };
 
 const authSlice = createSlice({
@@ -23,20 +23,21 @@ const authSlice = createSlice({
           ...state.user,
           menus: action.payload.menus,
           apis: action.payload.apis,
-          uis: action.payload.uis
+          uis: action.payload.uis,
         };
       }
-    }
-  }
+    },
+  },
 });
 
-export const { setUser, resetUser, setUserPermissions } = authSlice.actions;
+export const {setUser, resetUser, setUserPermissions} = authSlice.actions;
 export const authReducer = authSlice.reducer;
 
-export const isUserAuthenticated = (state) => state.auth.isAuthenticated;
-export const getUserId = (state) => state.auth.user?.id;
-export const getUserName = (state) => state.auth.user?.name;
-export const getUserEmail = (state) => state.auth.user?.email;
-export const getUserRole = (state) => state.auth.user?.role;
-export const getUserMenus = (state) => state.auth.user?.menus;
-export const getUserScreens = (state) => state.auth.user?.uis;
+export const isUserAuthenticated = state => state.auth.isAuthenticated;
+export const getUserId = state => state.auth.user?.id;
+export const getUserName = state => state.auth.user?.name;
+export const getUserEmail = state => state.auth.user?.email;
+export const getUserRole = state => state.auth.user?.role;
+export const getUserAvatar = state => state.auth.user?.avatar;
+export const getUserMenus = state => state.auth.user?.menus;
+export const getUserScreens = state => state.auth.user?.uis;

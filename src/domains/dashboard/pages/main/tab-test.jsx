@@ -1,8 +1,10 @@
 import {Box, TextField, Typography} from '@mui/material';
-import {usePageState} from '../../../hooks';
+import {usePageState} from '@/hooks';
+import {useParams} from 'react-router-dom';
 
 export const DashboardTabTest = () => {
-  const [stateData, setStateData, pageId] = usePageState('DashboardTabTest');
+  const {id} = useParams();
+  const [stateData, setStateData, pageId] = usePageState('DashboardTabTest', id);
 
   return (
     <Box>

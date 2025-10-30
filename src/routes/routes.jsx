@@ -6,8 +6,9 @@ import {AppRoot} from './app-root';
 import {NotFoundPage, ErrorPage} from '../components/errors';
 
 import {LoginPage} from '@/domains/auth/pages';
-import {DashboardPage, DashboardTabHome, DashboardTabTest} from '@/domains/dashboard/index';
-import {ProfilePage} from '@/domains/profile/pages';
+import {DashboardPage, DashboardTabHome, DashboardTabTest} from '@/domains/dashboard/pages';
+
+import {ProfilePage, ProfileTabHome, ProfileTabAchievements, ProfileTabPreferences} from '@/domains/profile/pages';
 
 export const routes = [
   {
@@ -43,7 +44,17 @@ export const routes = [
           {path: 'test/:id?', element: <DashboardTabTest />},
         ],
       },
-      {path: 'profile/:id', element: <ProfilePage />},
+
+      {index: true, element: <Navigate to="profile" replace />},
+      {
+        path: 'profile',
+        element: <ProfilePage />,
+        children: [
+          {index: true, element: <ProfileTabHome />},
+          {path: 'achievements', element: <ProfileTabAchievements />},
+          {path: 'preferences', element: <ProfileTabPreferences />},
+        ],
+      },
       {path: '*', element: <NotFoundPage />},
     ],
   },
@@ -54,4 +65,6 @@ export const routes = [
   },
 ];
 
-export const router = createBrowserRouter(routes);
+export const router = createBrowserRouter(routes, {
+  basename: '',
+});

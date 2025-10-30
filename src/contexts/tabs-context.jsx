@@ -1,26 +1,63 @@
-import {createContext, useContext, useState, useCallback} from 'react';
+import {createContext, useContext, useCallback} from 'react';
 
-const TabsContext = createContext(null);
+const PageTabsContext = createContext(null);
 
-export const TabsProvider = ({children}) => {
-  const [tabs, setTabs] = useState([]);
+const PageTabsProvider = ({children, pageState, setPageState}) => {
+  const tabs = pageState?.tabs || [];
 
-  const addTab = useCallback(newTab => {
-    setTabs(prev => {
-      const exists = prev.some(t => t.id === newTab.id);
-      return exists ? prev : [...prev, newTab];
-    });
-  }, []);
+  const addTab = useCallback(
+    newTab => {
+      newTab.dynamic = true;
+      newTab.active = true;
 
-  const removeTab = useCallback(tabId => {
-    setTabs(prev => prev.filter(t => t.id !== tabId));
-  }, []);
+      const prevTabs = pageState?.tabs || [];
+      const updatedTabs = prevTabs.map(tab => ({...tab, active: false}));
 
-  return <TabsContext.Provider value={{tabs, addTab, removeTab}}>{children}</TabsContext.Provider>;
+      const exists = updatedTabs.some(t => t.id === newTab.id);
+      let newTabs;
+      if (exists) {
+        newTabs = updatedTabs.map(t => (t.id === newTab.id ? {...t, active: true} : t));
+      } else {
+        newTabs = [...updatedTabs, {...newTab, dynamic: true, active: true}];
+      }
+
+      setPageState({...pageState, tabs: newTabs});
+    },
+    [pageState, setPageState],
+  );
+
+  const removeTab = useCallback(
+    tabId => {
+      const prevTabs = pageState?.tabs || [];
+      const newTabs = prevTabs.filter(t => t.id !== tabId);
+      setPageState({...pageState, tabs: newTabs});
+    },
+    [pageState, setPageState],
+  );
+
+  const selectTab = useCallback(
+    tabId => {
+      const prevTabs = pageState?.tabs || [];
+      const exists = prevTabs.some(t => t.id === tabId);
+      if (!exists) return;
+
+      const newTabs = prevTabs.map(tab => ({
+        ...tab,
+        active: tab.id === tabId,
+      }));
+
+      setPageState({...pageState, tabs: newTabs});
+    },
+    [pageState, setPageState],
+  );
+
+  return <PageTabsContext.Provider value={{tabs, addTab, removeTab, selectTab}}>{children}</PageTabsContext.Provider>;
 };
 
-export const useTabs = () => {
-  const ctx = useContext(TabsContext);
+const usePageTabs = () => {
+  const ctx = useContext(PageTabsContext);
   if (!ctx) throw new Error('useTabs deve ser usado dentro de <TabsProvider>');
   return ctx;
 };
+
+export {PageTabsProvider, usePageTabs};
