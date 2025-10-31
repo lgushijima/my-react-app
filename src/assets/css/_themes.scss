@@ -1,17 +1,17 @@
 :root {
   --color-primary: #ff5555;
   --color-secondary: #6c757d;
-  --color-background: #ffffff;
 
   --color-bg-primary: #212529;
   --color-bg-secondary: #343a40;
-  --gradient-bg: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.2) 90%, rgba(0, 0, 0, 0.7) 100%);
+  --color-bg-avatar: #adb5bd;
+  --color-bg-content: rgba(0, 0, 0, 0.2);
+  --color-bg-input: #343a40;
 
   --color-text-primary: #ced4da;
   --color-text-secondary: #adb5bd;
   --color-text-highlight: #ebeff3;
   --color-text-disabled: #333333;
-  --hero-bg: url('/assets/images/light-bg.jpg');
 }
 
 [data-theme='dark'] {
@@ -21,11 +21,9 @@
 
   --color-bg-primary: #212529;
   --color-bg-secondary: #343a40;
-  --gradient-bg: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.2) 90%, rgba(0, 0, 0, 0.7) 100%);
 
   --color-text-primary: #ced4da;
   --color-text-secondary: #adb5bd;
   --color-text-highlight: #ebeff3;
   --color-text-disabled: #333333;
-  --hero-bg: url('/assets/images/dark-bg.jpg');
 }

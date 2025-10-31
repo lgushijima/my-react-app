@@ -7,7 +7,6 @@ export const DashboardPage = ({}) => {
   const initialData = {tabs: [{id: 'home', title: 'Home', link: '/app/dashboard'}]};
   const [stateData, setStateData, pageId] = usePageState('DashboardPage', 'dashboard', initialData);
 
-  console.log('STATE', stateData);
   return (
     <PageTabsProvider pageState={stateData} setPageState={setStateData}>
       <div className="page-container">
