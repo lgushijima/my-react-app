@@ -154,6 +154,14 @@ const muzitTheme = createTheme({
         },
       },
     },
+
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backdropFilter: 'blur(1px)',
+        },
+      },
+    },
   },
 });
 

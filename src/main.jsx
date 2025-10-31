@@ -15,13 +15,18 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {ThemeProvider} from '@mui/material/styles';
 import muzitTheme from './theme/index.js';
 import {persistor, store} from './store';
+import {ModalProvider, DialogProvider} from './contexts/';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={muzitTheme}>
-          <App />
+          <DialogProvider>
+            <ModalProvider>
+              <App />
+            </ModalProvider>
+          </DialogProvider>
         </ThemeProvider>
       </PersistGate>
     </Provider>

@@ -11,6 +11,7 @@ import {IMaskInput} from 'react-imask';
 import {NumericFormat} from 'react-number-format';
 import React, {useState} from 'react';
 import dayjs from 'dayjs';
+import {useModal, useDialog} from '@/contexts';
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const {onChange, ...other} = props;
@@ -30,9 +31,24 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
 
 export const ProfileTabHome = ({}) => {
   const {id} = useParams();
+  const {openModal} = useModal();
+  const {openDialog} = useDialog();
+
   const [stateData, setStateData, pageId] = usePageState('ProfileTabHome', id);
 
   const [date, setDate] = useState(dayjs('2025-10-15'));
+
+  const handleAvatarChangeClick = () => {
+    openModal({
+      title: 'Change Theme',
+      content: <div>Select your theme: Light or Dark</div>,
+      actions: (
+        <Button onClick={() => openDialog({title: 'Confirm', content: 'Password changed!'})} variant="contained" color="primary">
+          Save
+        </Button>
+      ),
+    });
+  };
 
   return (
     <Box>
@@ -42,7 +58,7 @@ export const ProfileTabHome = ({}) => {
         <Grid size={{xs: 12, md: 3, lg: 2}} offset={{md: 0}}>
           <Box className="box-content">
             <Avatar src="/img/avatar/avatar-3.png" sx={{height: 128, width: 128}}></Avatar>
-            <Button variant="contained" color="primary" sx={{mt: 2}}>
+            <Button variant="contained" color="primary" sx={{mt: 2}} onClick={() => handleAvatarChangeClick()}>
               Change avatar
             </Button>
           </Box>
@@ -63,7 +79,7 @@ export const ProfileTabHome = ({}) => {
                   />
                 </Grid>
                 <Grid size={{xs: 12}}>
-                  <TextField label="Email" defaultValue="" size="small" fullWidth disabled readonly />
+                  <TextField label="Email" defaultValue="" size="small" fullWidth disabled />
                 </Grid>
                 <Grid size={{xs: 12, md: 4}}>
                   <TextField label="Phone" defaultValue="" size="small" fullWidth />
